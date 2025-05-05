@@ -1,0 +1,386 @@
+/* General styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+/* App Layout */
+.App {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 220px;
+  background-color: #1f2d3d; /* Sidebar color */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+}
+
+.logo-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  height: 40px;
+  object-fit: contain;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.category-item {
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.category-item:hover,
+.category-item.active {
+  background-color: #32475c;
+}
+
+/* Main Content Styles */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f1f6f9; /* Light background to match the sidebar color */
+  position: relative; /* To position the editor form on top */
+}
+
+/* Top Bar Styles */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 8px 12px;
+  width: 300px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.new-note-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.new-note-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Notes Grid */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.note-card {
+  background-color: #e9ecef; /* Light gray background for note cards */
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  position: relative;
+  max-height: 300px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Show buttons when hovering over the note card */
+.note-card:hover {
+  transform: translateY(-3px);
+}
+
+.note-card:hover .note-actions {
+  visibility: visible;
+}
+
+.note-card h3 {
+  margin-top: 0;
+  font-size: 18px;
+  word-wrap: break-word;
+}
+
+.note-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Tag Styling for Categories */
+.note-tag {
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+}
+
+.note-tag.personal {
+  background-color: #28a745;
+}
+
+.note-tag.work {
+  background-color: #007bff;
+}
+
+.note-tag.ideas {
+  background-color: #ffc107;
+}
+
+.note-tag.todo {
+  background-color: #dc3545;
+}
+
+.note-date {
+  color: #6c757d;
+}
+
+.note-form input,
+.note-form textarea,
+.note-form select {
+  width: 100%;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.note-actions {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  visibility: hidden;  /* Hide actions by default */
+}
+
+.edit-icon,
+.delete-icon {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.edit-icon:hover,
+.delete-icon:hover {
+  color: #007bff;
+}
+
+.save-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background-color: #218838;
+}
+
+.note-content {
+  flex: 1;
+  overflow-y: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.note-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.note-form .category-select {
+  max-width: 200px;
+}
+
+.note-form .category-select select {
+  width: 100%;
+}
+
+.new-note-modal .note-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.new-note-modal input,
+.new-note-modal select {
+  font-size: 14px;
+}
+
+/* Fullscreen Editor Styles */
+.fullscreen-editor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.editor-content {
+  background-color: #333;
+  padding: 20px;
+  max-width: 800px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.editor-content input,
+.editor-content textarea {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.editor-content textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.editor-content .save-btn {
+  padding: 10px 20px;
+  background-color: #ff6600;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.editor-content .save-btn:hover {
+  background-color: #ff4500;
+}
+
+/* Category Buttons inside Sidebar and Editor */
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.category-btn {
+  padding: 8px 14px;
+  background-color: #555;
+  border: 1px solid #777;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.category-btn:hover {
+  background-color: #777;
+}
+
+.category-btn.selected {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* Modal-like Overlay for New/Editing Note Form */
+.note-form-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent overlay */
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.note-form-overlay.active {
+  display: flex; /* Show the form overlay */
+}
+
+.note-form {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  width: 400px; /* Set the width of the note form */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1000;
+}
+
+.note-form .category-select {
+  margin-bottom: 15px;
+}
+
+.close-form-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.close-form-btn:hover {
+  background-color: #c82333;
+}
+
+/* Error message style */
+.error-message {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
