@@ -25,7 +25,9 @@ NoteNest is a simple and intuitive note-taking web app built with React and JSON
 
 ## 📁 Project Structure
 notekeeper/
+
 ├── db.json # JSON Server backend data
+
 ├── notekeeper-frontend/ # React frontend application
 
 ## HOW TO RUN THE CODE
